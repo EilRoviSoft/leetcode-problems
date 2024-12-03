@@ -26,10 +26,10 @@
     <ClInclude Include="src\p21.hpp" />
     <ClInclude Include="src\p26.hpp" />
     <ClInclude Include="src\p27.hpp" />
+    <ClInclude Include="src\p28.hpp" />
     <ClInclude Include="src\p9.hpp" />
     <ClInclude Include="src\p14.hpp" />
     <ClInclude Include="src\problems_collection.hpp" />
-    <ClInclude Include="src\solution.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\p1.txt" />
@@ -37,6 +37,8 @@
     <Text Include="tests\p20.txt" />
     <Text Include="tests\p21.txt" />
     <Text Include="tests\p26.txt" />
+    <Text Include="tests\p27.txt" />
+    <Text Include="tests\p28.txt" />
     <Text Include="tests\p9.txt" />
   </ItemGroup>
   <ItemGroup>

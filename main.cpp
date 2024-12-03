@@ -8,24 +8,29 @@
 
 //lib files
 #include "util.hpp"
-#include "lib.hpp"
-#include "solution.hpp"
-
-size_t ISolution::active_id = 0;
-std::unordered_map<size_t, std::tuple<solution_ptr, std::function<void()>>> ISolution::solutions = {};
 
 //problems
 #include "problems_collection.hpp"
 
+std::unordered_map<size_t, std::function<void()>> solutions;
+
 int main() {
 	init_solutions();
-	std::cout << "Write problem id: ";
-	ISolution::set_active(util::read_value<size_t>(std::cin));
+
+	std::string pid;
+	std::cout << "write problem id: ";
+	std::cin >> pid;
 
 	_CrtMemState _old, _new, _dif;
 	_CrtMemCheckpoint(&_old);
 
-	ISolution::exec();
+	if (pid == "all") {
+		for (const auto& [problem_id, func] : solutions) {
+			func();
+			std::cout << "problem: " << problem_id << " is done\n";
+		}
+	} else
+		solutions[std::stoull(pid)]();
 
 	_CrtMemCheckpoint(&_new);
 	if (_CrtMemDifference(&_dif, &_old, &_new)) {

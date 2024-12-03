@@ -3,11 +3,11 @@
 //std
 #include <cstdint>
 
-//src
-#include "solution.hpp"
+//lib
+#include "util.hpp"
 
 namespace p9 {
-	class Solution : public ISolution {
+	class Solution {
 	public:
 		bool isPalindrome(int x) const {
 			bool result = true;
@@ -41,4 +41,21 @@ namespace p9 {
 			return result;
 		}
 	};
+
+	using input_t = int;
+	using output_t = bool;
+	using result_t = output_t;
+
+	inline void test_maker(std::istream& is, util::tests_t<input_t, result_t>& tests) {
+		auto input = util::read_value<int>(is);
+		auto result = util::read_value<bool>(is);
+		tests.emplace_back(input, result);
+	}
+	inline output_t test_executor(const Solution& s, const input_t& input) {
+		return s.isPalindrome(input);
+	}
+	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
+		return output == result;
+	}
+	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 }

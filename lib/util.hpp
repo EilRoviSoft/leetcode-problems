@@ -2,12 +2,15 @@
 
 //std
 #include <functional>
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <optional>
 #include <set>
 #include <string>
 #include <vector>
+
+extern std::unordered_map<size_t, std::function<void()>> solutions;
 
 namespace util {
 	template<typename _InputType, typename _ResultType>
@@ -30,20 +33,31 @@ namespace util {
 		return result;
 	}
 
-	void read_tests(size_t test_id, const std::function<void(std::istream& is)>& test_maker);
+	template<typename _SolutionType, typename _InputType, typename _OutputType, typename _ResultType>
+	void exec_solution(size_t problem_id,
+					   std::function<void(std::istream& is, tests_t<_InputType, _ResultType>&)> test_maker,
+					   std::function<_OutputType(_SolutionType&, _InputType&)> test_executor,
+					   std::function<bool(const _InputType&, const _OutputType&, const _ResultType&)> test_checker,
+					   std::optional<std::function<void(_InputType, _OutputType, _ResultType)>> output_destroyer = {}) {
+		solutions.emplace(problem_id, [problem_id, test_maker, test_executor, test_checker, output_destroyer]() {
+			_SolutionType s;
+			tests_t<_InputType, _ResultType> tests;
+			std::string filename = "tests/p" + std::to_string(problem_id) + ".txt";
+			std::fstream file(filename);
+			if (!file.is_open())
+				throw std::runtime_error("util.hpp, init_solution: test is not found\n");
+			while (!file.eof())
+				test_maker(file, tests);
+			file.close();
 
-	template<typename _InputType, typename _OutputType, typename _ResultType>
-	void exec_tests(tests_t<_InputType, _ResultType>& tests, 
-					const std::function<_OutputType(_InputType&)> test_executor,
-					const std::function<bool(const _InputType&, const _OutputType&, const _ResultType&)> test_checker,
-					const std::optional<std::function<void(_OutputType)>> output_destroyer = {}){
-		for (size_t i = 0; i < tests.size(); i++) {
-			auto output = test_executor(tests[i].first);
-			if (!test_checker(tests[i].first, output, tests[i].second))
-				std::cout << "Error on test: " << i + 1 << "\n";
-			if (output_destroyer)
-				(*output_destroyer)(output);
-		}
+			for (size_t i = 0; i < tests.size(); i++) {
+				auto output = test_executor(s, tests[i].first);
+				if (!test_checker(tests[i].first, output, tests[i].second))
+					std::cout << "Error on test: " << i + 1 << "\n";
+				if (output_destroyer)
+					(*output_destroyer)(tests[i].first, output, tests[i].second);
+			}
+		});
 	}
 
 	template<typename _Type>
