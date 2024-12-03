@@ -16,6 +16,8 @@ namespace util {
 	template<typename _InputType, typename _ResultType>
 	using tests_t = std::vector<std::pair<_InputType, _ResultType>>;
 
+	struct none_t {};
+
 	template<typename T>
 	T read_value(std::istream& is) {
 		T result;
