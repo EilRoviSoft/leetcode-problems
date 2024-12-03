@@ -14,6 +14,7 @@
 #include "p28.hpp"
 #include "p35.hpp"
 #include "p58.hpp"
+#include "p66.hpp"
 
 /*
 //lib
@@ -42,4 +43,5 @@ void init_solutions() {
 	EXECUTE_SOLUTION_TESTER(28);
 	EXECUTE_SOLUTION_TESTER(35);
 	EXECUTE_SOLUTION_TESTER(58);
+	EXECUTE_SOLUTION_TESTER(66);
 }
