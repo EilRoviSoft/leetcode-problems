@@ -33,6 +33,7 @@
     <ClInclude Include="src\p67.hpp" />
     <ClInclude Include="src\p69.hpp" />
     <ClInclude Include="src\p70.hpp" />
+    <ClInclude Include="src\p83.hpp" />
     <ClInclude Include="src\p9.hpp" />
     <ClInclude Include="src\p14.hpp" />
     <ClInclude Include="src\problems_collection.hpp" />

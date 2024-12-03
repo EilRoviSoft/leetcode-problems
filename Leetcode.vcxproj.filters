@@ -66,6 +66,9 @@
     <ClInclude Include="src\p70.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\p83.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\p1.txt" />

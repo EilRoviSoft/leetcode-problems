@@ -18,6 +18,7 @@
 #include "p67.hpp"
 #include "p69.hpp"
 #include "p70.hpp"
+#include "p83.hpp"
 
 /*
 //lib
@@ -50,4 +51,5 @@ void init_solutions() {
 	EXECUTE_SOLUTION_TESTER(67);
 	EXECUTE_SOLUTION_TESTER(69);
 	EXECUTE_SOLUTION_TESTER(70);
+	EXECUTE_SOLUTION_TESTER(83);
 }
