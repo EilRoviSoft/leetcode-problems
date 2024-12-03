@@ -12,13 +12,15 @@
 #include "solution.hpp"
 
 size_t ISolution::active_id = 0;
-std::vector<std::tuple<solution_ptr, std::function<void()>>> ISolution::solutions = {};
+std::unordered_map<size_t, std::tuple<solution_ptr, std::function<void()>>> ISolution::solutions = {};
 
 //problems
 #include "problems_collection.hpp"
 
 int main() {
 	init_solutions();
+	std::cout << "Write problem id: ";
+	ISolution::set_active(util::read_value<size_t>(std::cin));
 
 	_CrtMemState _old, _new, _dif;
 	_CrtMemCheckpoint(&_old);

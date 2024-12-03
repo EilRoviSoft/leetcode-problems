@@ -2,6 +2,7 @@
 //std
 #include <functional>
 #include <iostream>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -32,11 +33,14 @@ namespace util {
 	void exec_tests(tests_t<_InputType, 
 					_OutputType>& tests, 
 					const std::function<_OutputType(_InputType&)> test_executor,
-					const std::function<bool(const _InputType&, const _OutputType&, const _OutputType&)> test_checker) {
+					const std::function<bool(const _InputType&, const _OutputType&, const _OutputType&)> test_checker,
+					const std::optional<std::function<void(_OutputType)>> output_destroyer = {}){
 		for (size_t i = 0; i < tests.size(); i++) {
 			auto output = test_executor(tests[i].first);
 			if (!test_checker(tests[i].first, output, tests[i].second))
 				std::cout << "Error on test: " << i + 1 << "\n";
+			if (output_destroyer)
+				(*output_destroyer)(output);
 		}
 	}
 }

@@ -23,6 +23,7 @@
     <ClInclude Include="lib\util.hpp" />
     <ClInclude Include="src\p1.hpp" />
     <ClInclude Include="src\p20.hpp" />
+    <ClInclude Include="src\p21.hpp" />
     <ClInclude Include="src\p9.hpp" />
     <ClInclude Include="src\p14.hpp" />
     <ClInclude Include="src\problems_collection.hpp" />
@@ -31,12 +32,19 @@
   <ItemGroup>
     <Text Include="tests\p1.txt" />
     <Text Include="tests\p14.txt" />
+    <Text Include="tests\p20.txt" />
+    <Text Include="tests\p21.txt" />
     <Text Include="tests\p9.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="lib\lib.cpp" />
     <ClCompile Include="lib\util.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\problems_collection.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
