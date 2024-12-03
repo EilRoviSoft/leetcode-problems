@@ -51,6 +51,9 @@
     <ClInclude Include="src\p35.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\p58.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\p1.txt" />
@@ -61,6 +64,8 @@
     <Text Include="tests\p26.txt" />
     <Text Include="tests\p27.txt" />
     <Text Include="tests\p28.txt" />
+    <Text Include="tests\p35.txt" />
+    <Text Include="tests\p58.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

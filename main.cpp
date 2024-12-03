@@ -17,22 +17,24 @@ std::unordered_map<size_t, std::function<void()>> solutions;
 int main() {
 	init_solutions();
 
-	std::string pid;
+	std::string command;
 	std::cout << "write problem id: ";
-	std::cin >> pid;
+	std::cin >> command;
 
-	_CrtMemState _old, _new, _dif;
-	_CrtMemCheckpoint(&_old);
+	/*_CrtMemState _old, _new, _dif;
+	_CrtMemCheckpoint(&_old);*/
 
-	if (pid == "all") {
+	if (command == "all") {
 		for (const auto& [problem_id, func] : solutions) {
 			func();
 			std::cout << "problem: " << problem_id << " is done\n";
 		}
-	} else
-		solutions[std::stoull(pid)]();
+	} else if (auto id = std::stoull(command); solutions.contains(id))
+		solutions[id]();
 
-	_CrtMemCheckpoint(&_new);
+	solutions.clear();
+
+	/*_CrtMemCheckpoint(&_new);
 	if (_CrtMemDifference(&_dif, &_old, &_new)) {
 		OutputDebugString(L"_CrtMemDumpStatistics:");
 		_CrtMemDumpStatistics(&_dif);
@@ -40,5 +42,5 @@ int main() {
 		_CrtMemDumpAllObjectsSince(&_old);
 		OutputDebugString(L"_CrtDumpMemoryLeaks:");
 		_CrtDumpMemoryLeaks();
-	}
+	}*/
 }
