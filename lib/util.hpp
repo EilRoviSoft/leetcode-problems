@@ -3,7 +3,9 @@
 //std
 #include <functional>
 #include <iostream>
+#include <map>
 #include <optional>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -42,5 +44,43 @@ namespace util {
 			if (output_destroyer)
 				(*output_destroyer)(output);
 		}
+	}
+
+	template<typename _Type>
+	std::map<_Type, size_t> count_values(const std::vector<_Type>& values) {
+		std::map<_Type, size_t> result;
+		for (const auto& it : values) {
+			if (result.contains(it))
+				result[it]++;
+			else
+				result[it] = 1;
+		}
+		return result;
+	}
+
+	template<class _Type>
+	std::vector<_Type> get_combination(const std::vector<_Type>& v1, const std::vector<_Type>& v2) {
+		std::set<_Type> result;
+		for (const auto& it : v1) {
+			if (!result.contains(it))
+				result.insert(it);
+		}
+		for (const auto& it : v2) {
+			if (!result.contains(it))
+				result.insert(it);
+		}
+		return std::vector<_Type>(result.begin(), result.end());
+	}
+
+	template<typename _Type>
+	bool has_same_values(const std::vector<_Type>& v1, const std::vector<_Type>& v2) {
+		bool result = true;
+		std::map<_Type, size_t> s1 = count_values(v1), s2 = count_values(v2);
+		for (const auto& it : get_combination(v1, v2))
+			if (s1[it] != s2[it]) {
+				result = false;
+				break;
+			}
+		return result;
 	}
 }

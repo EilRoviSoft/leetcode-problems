@@ -10,6 +10,7 @@
 #include "p20.hpp"
 #include "p21.hpp"
 #include "p26.hpp"
+#include "p27.hpp"
 
 /*
 ISolution::make_solution<p::Solution>(, [](const p::Solution& s) {
@@ -157,6 +158,29 @@ void init_solutions() {
 		}, [&](const input_t& args, const output_t& output, const result_t& result) {
 			const auto& [size, vec] = result;
 			return output == size && args == vec;
+		});
+	});
+	ISolution::make_solution<p27::Solution>(27, [](const p27::Solution& s) {
+		using input_t = std::tuple<std::vector<int>, int>;
+		using output_t = int;
+		using result_t = std::tuple<int, std::vector<int>>;
+
+		util::tests_t<input_t, result_t> tests;
+		util::read_tests(27, [&](std::istream& is) {
+			auto nums = util::read_vector<int>(is);
+			auto val = util::read_value<int>(is);
+			auto size = util::read_value<int>(is);
+			auto vec = util::read_vector<int>(is);
+			tests.emplace_back(std::make_tuple(nums, val), std::make_tuple(size, vec));
+		});
+		util::exec_tests<input_t, output_t, result_t>(tests, [&](input_t& input) {
+			auto& [nums, val] = input;
+			auto result = s.removeElement(nums, val);
+			return result;
+		}, [&](const input_t& args, const output_t& output, const result_t& result) {
+			const auto& [nums, val] = args;
+			const auto& [size, vec] = result;
+			return output == size && util::has_same_values(nums, vec);
 		});
 	});
 }
