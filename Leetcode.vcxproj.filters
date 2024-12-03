@@ -42,6 +42,9 @@
     <ClInclude Include="src\p21.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\p26.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\p1.txt" />

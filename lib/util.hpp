@@ -1,4 +1,5 @@
 #pragma once
+
 //std
 #include <functional>
 #include <iostream>
@@ -7,8 +8,8 @@
 #include <vector>
 
 namespace util {
-	template<typename _InputType, typename _OutputType>
-	using tests_t = std::vector<std::pair<_InputType, _OutputType>>;
+	template<typename _InputType, typename _ResultType>
+	using tests_t = std::vector<std::pair<_InputType, _ResultType>>;
 
 	template<typename T>
 	T read_value(std::istream& is) {
@@ -29,11 +30,10 @@ namespace util {
 
 	void read_tests(size_t test_id, const std::function<void(std::istream& is)>& test_maker);
 
-	template<typename _InputType, typename _OutputType>
-	void exec_tests(tests_t<_InputType, 
-					_OutputType>& tests, 
+	template<typename _InputType, typename _OutputType, typename _ResultType>
+	void exec_tests(tests_t<_InputType, _ResultType>& tests, 
 					const std::function<_OutputType(_InputType&)> test_executor,
-					const std::function<bool(const _InputType&, const _OutputType&, const _OutputType&)> test_checker,
+					const std::function<bool(const _InputType&, const _OutputType&, const _ResultType&)> test_checker,
 					const std::optional<std::function<void(_OutputType)>> output_destroyer = {}){
 		for (size_t i = 0; i < tests.size(); i++) {
 			auto output = test_executor(tests[i].first);

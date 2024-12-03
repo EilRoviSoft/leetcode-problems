@@ -24,6 +24,7 @@
     <ClInclude Include="src\p1.hpp" />
     <ClInclude Include="src\p20.hpp" />
     <ClInclude Include="src\p21.hpp" />
+    <ClInclude Include="src\p26.hpp" />
     <ClInclude Include="src\p9.hpp" />
     <ClInclude Include="src\p14.hpp" />
     <ClInclude Include="src\problems_collection.hpp" />
