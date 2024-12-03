@@ -12,6 +12,7 @@
 #include "p26.hpp"
 #include "p27.hpp"
 #include "p28.hpp"
+#include "p35.hpp"
 
 /*
 //lib
@@ -38,4 +39,5 @@ void init_solutions() {
 	EXECUTE_SOLUTION_TESTER(26);
 	EXECUTE_SOLUTION_TESTER(27);
 	EXECUTE_SOLUTION_TESTER(28);
+	EXECUTE_SOLUTION_TESTER(35);
 }
