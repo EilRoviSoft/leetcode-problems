@@ -54,7 +54,7 @@ namespace p67 {
 		auto result = util::read_string(is);
 		tests.emplace_back(std::make_tuple(a, b), result);
 	}
-	inline output_t test_executor(const Solution& s, input_t& input) {
+	inline output_t test_executor(const Solution& s, const input_t& input) {
 		const auto& [a, b] = input;
 		return s.addBinary(a, b);
 	}
