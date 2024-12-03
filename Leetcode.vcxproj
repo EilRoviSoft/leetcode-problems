@@ -37,6 +37,7 @@
     <ClInclude Include="src\p88.hpp" />
     <ClInclude Include="src\p9.hpp" />
     <ClInclude Include="src\p14.hpp" />
+    <ClInclude Include="src\p94.hpp" />
     <ClInclude Include="src\problems_collection.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +57,7 @@
     <Text Include="tests\p83.txt" />
     <Text Include="tests\p88.txt" />
     <Text Include="tests\p9.txt" />
+    <Text Include="tests\p94.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lib\lib.cpp" />

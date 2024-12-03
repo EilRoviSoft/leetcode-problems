@@ -72,6 +72,9 @@
     <ClInclude Include="src\p88.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\p94.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\p1.txt" />
@@ -90,6 +93,7 @@
     <Text Include="tests\p70.txt" />
     <Text Include="tests\p83.txt" />
     <Text Include="tests\p88.txt" />
+    <Text Include="tests\p94.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
