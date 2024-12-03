@@ -15,8 +15,8 @@ namespace util {
 				result += c;
 				c = is.get();
 			} while (c != '\"');
-		} else
-			is.get();
+		}
+		is.get();
 
 		//std::cout << result << ' ';
 		return result;

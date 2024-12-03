@@ -30,6 +30,7 @@
     <ClInclude Include="src\p35.hpp" />
     <ClInclude Include="src\p58.hpp" />
     <ClInclude Include="src\p66.hpp" />
+    <ClInclude Include="src\p67.hpp" />
     <ClInclude Include="src\p9.hpp" />
     <ClInclude Include="src\p14.hpp" />
     <ClInclude Include="src\problems_collection.hpp" />
@@ -45,6 +46,7 @@
     <Text Include="tests\p35.txt" />
     <Text Include="tests\p58.txt" />
     <Text Include="tests\p66.txt" />
+    <Text Include="tests\p67.txt" />
     <Text Include="tests\p9.txt" />
   </ItemGroup>
   <ItemGroup>
