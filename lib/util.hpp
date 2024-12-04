@@ -80,7 +80,7 @@ namespace util {
 					  std::optional<std::function<void(InputT, OutputT, ResultT)>> output_destroyer = {}) {
 		solutions.emplace(problem_id, [problem_id, test_maker, test_executor, test_checker, output_destroyer]() {
 			//to check memory leaks and calc execution time
-			std::chrono::duration<double, std::milli> result;
+			std::chrono::duration<double, std::milli> result(0);
 			_CrtMemState _old, _new, _dif;
 			_CrtMemCheckpoint(&_old);
 
@@ -96,18 +96,19 @@ namespace util {
 					test_maker(file, tests);
 				file.close();
 
-				auto start_time = std::chrono::high_resolution_clock::now();
+				
 				for (size_t i = 0; i < tests.size(); i++) {
+					auto start_time = std::chrono::high_resolution_clock::now();
 					auto output = test_executor(s, tests[i].first);
+					auto end_time = std::chrono::high_resolution_clock::now();
+					//calc execution time
+					result += end_time - start_time;
+
 					if (!test_checker(tests[i].first, output, tests[i].second))
 						std::cerr << "Error on test: " << i + 1 << "\n";
 					if (output_destroyer)
 						(*output_destroyer)(tests[i].first, output, tests[i].second);
 				}
-				auto end_time = std::chrono::high_resolution_clock::now();
-
-				//calc execution time
-				result = end_time - start_time;
 			}
 
 			//check memory leaks
