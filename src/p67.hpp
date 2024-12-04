@@ -52,14 +52,10 @@ namespace p67 {
 		auto a = util::read_string(is);
 		auto b = util::read_string(is);
 		auto result = util::read_string(is);
-		tests.emplace_back(std::make_tuple(a, b), result);
+		tests.emplace_back(std::make_tuple(std::move(a), std::move(b)), std::move(result));
 	}
 	inline output_t test_executor(const Solution& s, const input_t& input) {
 		const auto& [a, b] = input;
 		return s.addBinary(a, b);
 	}
-	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
-		return output == result;
-	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 }

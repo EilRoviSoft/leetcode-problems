@@ -26,9 +26,6 @@ namespace p112 {
 		const auto& [root, target_sum] = input;
 		return s.hasPathSum(root, target_sum);
 	}
-	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
-		return output == result;
-	}
 	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
 		const auto& [root, target_sum] = input;
 		delete_tree(root);

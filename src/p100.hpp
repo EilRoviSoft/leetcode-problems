@@ -63,9 +63,6 @@ namespace p100 {
 		const auto& [n1, n2] = input;
 		return s.isSameTree(n1, n2);
 	}
-	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
-		return output == result;
-	}
 	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
 		const auto& [n1, n2] = input;
 		delete_tree(n1);

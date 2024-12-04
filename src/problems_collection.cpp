@@ -41,30 +41,51 @@ inline bool test_checker(const input_t& input, const output_t& output, const res
 inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 */
 
-#define ADD_CUSTOM_TESTER(PRID, CLASS_NAME) util::add_solution<p##PRID::##CLASS_NAME, p##PRID::input_t, p##PRID::output_t, p##PRID::result_t>(PRID, p##PRID::test_maker, p##PRID::test_executor, p##PRID::test_checker, p##PRID::data_destroyer)
-#define ADD_SOLUTION_TESTER(PRID) ADD_CUSTOM_TESTER(PRID, Solution)
+template<typename _InputType, typename _OutputType, typename _ResultType>
+bool standard_checker(const _InputType& input, const _OutputType& output, const _ResultType& result) {
+	return output == result;
+}
+template<typename _InputType, typename _OutputType, typename _ResultType>
+void standard_destroyer(const _InputType& input, const _OutputType& output, const _ResultType& result) {}
+
+#define STANDARD_CHECKER(PRID) standard_checker<p##PRID::input_t, p##PRID::output_t, p##PRID::result_t>
+#define STANDARD_DESTROYER(PRID) standard_destroyer<p##PRID::input_t, p##PRID::output_t, p##PRID::result_t>
+
+#define ADD_CUSTOM_TESTER(PRID, CLASS_NAME, TEST_MAKER, TEST_EXECUTOR, TEST_CHECKER, DATA_DESTROYER) util::add_solution<p##PRID::##CLASS_NAME, p##PRID::input_t, p##PRID::output_t, p##PRID::result_t>(PRID, TEST_MAKER, TEST_EXECUTOR, TEST_CHECKER, DATA_DESTROYER)
+
+#define ADD_CUSTOM_MECD(PRID, CLASS_NAME) ADD_CUSTOM_TESTER(PRID, CLASS_NAME, p##PRID::test_maker, p##PRID::test_executor, p##PRID::test_checker, p##PRID::data_destroyer)
+#define ADD_SOLUTION_MECD(PRID) ADD_CUSTOM_MECD(PRID, Solution)
+
+#define ADD_CUSTOM_MEC(PRID, CLASS_NAME) ADD_CUSTOM_TESTER(PRID, CLASS_NAME, p##PRID::test_maker, p##PRID::test_executor, p##PRID::test_checker, STANDARD_DESTROYER(PRID))
+#define ADD_SOLUTION_MEC(PRID) ADD_CUSTOM_MEC(PRID, Solution)
+
+#define ADD_CUSTOM_MED(PRID, CLASS_NAME) ADD_CUSTOM_TESTER(PRID, CLASS_NAME, p##PRID::test_maker, p##PRID::test_executor, STANDARD_CHECKER(PRID), p##PRID::data_destroyer)
+#define ADD_SOLUTION_MED(PRID) ADD_CUSTOM_MED(PRID, Solution)
+
+#define ADD_CUSTOM_ME(PRID, CLASS_NAME) ADD_CUSTOM_TESTER(PRID, CLASS_NAME, p##PRID::test_maker, p##PRID::test_executor, STANDARD_CHECKER(PRID), STANDARD_DESTROYER(PRID))
+#define ADD_SOLUTION_ME(PRID) ADD_CUSTOM_ME(PRID, Solution)
 
 void init_solutions() {
-	ADD_SOLUTION_TESTER(1);
-	ADD_SOLUTION_TESTER(9);
-	ADD_SOLUTION_TESTER(14);
-	ADD_SOLUTION_TESTER(20);
-	ADD_SOLUTION_TESTER(21);
-	ADD_SOLUTION_TESTER(26);
-	ADD_SOLUTION_TESTER(27);
-	ADD_SOLUTION_TESTER(28);
-	ADD_SOLUTION_TESTER(35);
-	ADD_SOLUTION_TESTER(58);
-	ADD_SOLUTION_TESTER(66);
-	ADD_SOLUTION_TESTER(67);
-	ADD_SOLUTION_TESTER(69);
-	ADD_SOLUTION_TESTER(70);
-	ADD_SOLUTION_TESTER(83);
-	ADD_SOLUTION_TESTER(88);
-	ADD_SOLUTION_TESTER(94);
-	ADD_SOLUTION_TESTER(100);
-	ADD_SOLUTION_TESTER(101);
-	ADD_SOLUTION_TESTER(104);
-	ADD_SOLUTION_TESTER(111);
-	ADD_SOLUTION_TESTER(112);
+	ADD_SOLUTION_ME(1);
+	ADD_SOLUTION_ME(9);
+	ADD_SOLUTION_ME(14);
+	ADD_SOLUTION_ME(20);
+	ADD_SOLUTION_MECD(21);
+	ADD_SOLUTION_MEC(26);
+	ADD_SOLUTION_MEC(27);
+	ADD_SOLUTION_ME(28);
+	ADD_SOLUTION_ME(35);
+	ADD_SOLUTION_ME(58);
+	ADD_SOLUTION_ME(66);
+	ADD_SOLUTION_ME(67);
+	ADD_SOLUTION_ME(69);
+	ADD_SOLUTION_ME(70);
+	ADD_SOLUTION_MECD(83);
+	ADD_SOLUTION_MEC(88);
+	ADD_SOLUTION_MED(94);
+	ADD_SOLUTION_MED(100);
+	ADD_SOLUTION_MED(101);
+	ADD_SOLUTION_MED(104);
+	ADD_SOLUTION_MED(111);
+	ADD_SOLUTION_MED(112);
 }

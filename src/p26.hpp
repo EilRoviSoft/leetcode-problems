@@ -31,7 +31,7 @@ namespace p26 {
 		auto input = util::read_vector<int>(is);
 		auto size = util::read_value<int>(is);
 		auto vec = util::read_vector<int>(is);
-		tests.emplace_back(input, std::make_tuple(size, vec));
+		tests.emplace_back(std::move(input), std::make_tuple(size, std::move(vec)));
 	}
 	inline output_t test_executor(const Solution& s, input_t& input) {
 		return s.removeDuplicates(input);
@@ -40,5 +40,4 @@ namespace p26 {
 		const auto& [size, vec] = result;
 		return output == size && input == vec;
 	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 }

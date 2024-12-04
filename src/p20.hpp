@@ -8,7 +8,7 @@
 namespace p20 {
 	class Solution {
 	public:
-		bool isValid(const std::string& s) const {
+		bool isValid(const std::string& str) const {
 			bool result = true;
 			std::vector <int> stack;
 			const std::map<char, char> inverse = {
@@ -17,7 +17,7 @@ namespace p20 {
 				{ '}', '{' }
 			};
 
-			for (auto c : s) {
+			for (auto c : str) {
 				switch (c) {
 				case '(':
 				case '[':
@@ -46,14 +46,9 @@ namespace p20 {
 	inline void test_maker(std::istream& is, util::tests_t<input_t, result_t>& tests) {
 		auto input = util::read_value<std::string>(is);
 		auto result = util::read_value<bool>(is);
-		tests.emplace_back(input, result);
+		tests.emplace_back(std::move(input), result);
 	}
 	inline output_t test_executor(const Solution& s, const input_t& input) {
-		auto result = s.isValid(input);
-		return result;
+		return s.isValid(input);
 	}
-	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
-		return output == result;
-	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 }

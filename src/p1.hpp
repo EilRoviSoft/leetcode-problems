@@ -36,14 +36,10 @@ namespace p1 {
 		auto nums = util::read_vector<int>(is);
 		auto target = util::read_value<int>(is);
 		auto result = util::read_vector<int>(is);
-		tests.emplace_back(std::make_tuple(nums, target), result);
+		tests.emplace_back(std::make_tuple(std::move(nums), target), std::move(result));
 	}
 	inline output_t test_executor(const Solution& s, input_t& input) {
 		const auto& [nums, target] = input;
 		return s.twoSum(nums, target);
 	}
-	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
-		return output == result;
-	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 }

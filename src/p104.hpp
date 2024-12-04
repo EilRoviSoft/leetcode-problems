@@ -54,9 +54,6 @@ namespace p104 {
 	inline output_t test_executor(const Solution& s, const input_t& input) {
 		return s.maxDepth(input);
 	}
-	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
-		return output == result;
-	}
 	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
 		delete_tree(input);
 	}

@@ -41,13 +41,9 @@ namespace p66 {
 	inline void test_maker(std::istream& is, util::tests_t<input_t, result_t>& tests) {
 		auto input = util::read_vector<int>(is);
 		auto output = util::read_vector<int>(is);
-		tests.emplace_back(input, output);
+		tests.emplace_back(std::move(input), std::move(output));
 	}
 	inline output_t test_executor(const Solution& s, const input_t& input) {
 		return s.plusOne(input);
 	}
-	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
-		return output == result;
-	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 }

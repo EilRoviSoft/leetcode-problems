@@ -44,14 +44,10 @@ namespace p28 {
 		auto haystack = util::read_string(is);
 		auto needle = util::read_string(is);
 		auto result = util::read_value<int>(is);
-		tests.emplace_back(std::make_tuple(haystack, needle), result);
+		tests.emplace_back(std::make_tuple(std::move(haystack), std::move(needle)), result);
 	}
 	inline output_t test_executor(const Solution& s, input_t& input) {
 		const auto& [haystack, needle] = input;
 		return s.strStr(haystack, needle);
 	}
-	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
-		return output == result;
-	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 }
