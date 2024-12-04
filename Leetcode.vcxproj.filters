@@ -75,6 +75,21 @@
     <ClInclude Include="src\p94.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\p100.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\p101.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\p104.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\p111.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\p112.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\p1.txt" />
@@ -94,12 +109,15 @@
     <Text Include="tests\p83.txt" />
     <Text Include="tests\p88.txt" />
     <Text Include="tests\p94.txt" />
+    <Text Include="tests\p100.txt" />
+    <Text Include="tests\p101.txt" />
+    <Text Include="tests\p104.txt" />
+    <Text Include="tests\p111.txt" />
+    <Text Include="tests\p112.txt" />
+    <Text Include="tests\p303.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\problems_collection.cpp">

@@ -51,6 +51,7 @@ namespace p83 {
 		return ret;
 	}
 	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
+		delete_list_node(input);
 		delete_list_node(output);
 		delete_list_node(result);
 	}

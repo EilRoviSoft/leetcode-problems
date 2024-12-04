@@ -7,32 +7,32 @@
 #include "lib.hpp"
 #include "util.hpp"
 
-namespace p94 {
+namespace p104 {
 	class Solution {
-		enum Status : char { nc = 'u', lc = 'l', rc = 'r' };
-		struct iterator {
-			TreeNode* ptr;
-			Status status;
-		};
+		enum checked_t : char { nc, lc, rc };
 
+		struct iterator_t {
+			TreeNode* ptr;
+			checked_t status;
+		};
 	public:
-		std::vector<int> inorderTraversal(TreeNode* root) const {
-			std::vector<int> result;
+		int maxDepth(TreeNode* root) const {
+			int result = 0;
+
 			if (root) {
-				std::stack<iterator> stack;
+				std::stack<iterator_t> stack;
+
 				stack.emplace(root, nc);
 				while (!stack.empty()) {
-					if (stack.top().ptr->left && stack.top().status == nc) {
+					if (stack.top().status < lc && stack.top().ptr->left) {
 						stack.top().status = lc;
 						stack.emplace(stack.top().ptr->left, nc);
-					} else if (stack.top().ptr->right && stack.top().status != rc) {
-						if (stack.top().status != rc)
-							result.push_back(stack.top().ptr->val);
+					} else if (stack.top().status < rc && stack.top().ptr->right) {
 						stack.top().status = rc;
 						stack.emplace(stack.top().ptr->right, nc);
 					} else {
-						if (stack.top().status != rc)
-							result.push_back(stack.top().ptr->val);
+						if (stack.size() > result)
+							result = stack.size();
 						stack.pop();
 					}
 				}
@@ -43,16 +43,16 @@ namespace p94 {
 	};
 
 	using input_t = TreeNode*;
-	using output_t = std::vector<int>;
+	using output_t = int;
 	using result_t = output_t;
 
 	inline void test_maker(std::istream& is, util::tests_t<input_t, result_t>& tests) {
 		auto input = make_tree(util::read_vector<int>(is));
-		auto result = util::read_vector<int>(is);
+		auto result = util::read_value<int>(is);
 		tests.emplace_back(input, result);
 	}
 	inline output_t test_executor(const Solution& s, const input_t& input) {
-		return s.inorderTraversal(input);
+		return s.maxDepth(input);
 	}
 	inline bool test_checker(const input_t& input, const output_t& output, const result_t& result) {
 		return output == result;
