@@ -20,8 +20,8 @@ using ms_duration_t = std::chrono::duration<double, std::milli>;
 extern std::unordered_map<size_t, std::function<ms_duration_t()>> solutions;
 
 namespace util {
-	template<typename _InputType, typename _ResultType>
-	using tests_t = std::vector<std::pair<_InputType, _ResultType>>;
+	template<typename InputT, typename ResultT>
+	using tests_t = std::vector<std::pair<InputT, ResultT>>;
 
 	struct none_t {};
 
@@ -72,12 +72,12 @@ namespace util {
 		return result;
 	}
 
-	template<typename _SolutionType, typename _InputType, typename _OutputType, typename _ResultType>
+	template<typename SolutionT, typename InputT, typename OutputT, typename ResultT>
 	void add_solution(size_t problem_id,
-					  std::function<void(std::istream& is, tests_t<_InputType, _ResultType>&)> test_maker,
-					  std::function<_OutputType(_SolutionType&, _InputType&)> test_executor,
-					  std::function<bool(const _InputType&, const _OutputType&, const _ResultType&)> test_checker,
-					  std::optional<std::function<void(_InputType, _OutputType, _ResultType)>> output_destroyer = {}) {
+					  std::function<void(std::istream& is, tests_t<InputT, ResultT>&)> test_maker,
+					  std::function<OutputT(SolutionT&, InputT&)> test_executor,
+					  std::function<bool(const InputT&, const OutputT&, const ResultT&)> test_checker,
+					  std::optional<std::function<void(InputT, OutputT, ResultT)>> output_destroyer = {}) {
 		solutions.emplace(problem_id, [problem_id, test_maker, test_executor, test_checker, output_destroyer]() {
 			//to check memory leaks and calc execution time
 			std::chrono::duration<double, std::milli> result;
@@ -85,8 +85,8 @@ namespace util {
 			_CrtMemCheckpoint(&_old);
 
 			{
-				_SolutionType s;
-				tests_t<_InputType, _ResultType> tests;
+				SolutionT s;
+				tests_t<InputT, ResultT> tests;
 
 				std::string filename = "tests/p" + std::to_string(problem_id) + ".txt";
 				std::fstream file(filename);
@@ -127,9 +127,9 @@ namespace util {
 		});
 	}
 
-	template<typename _Type>
-	std::map<_Type, size_t> count_values(const std::vector<_Type>& values) {
-		std::map<_Type, size_t> result;
+	template<typename T>
+	std::map<T, size_t> count_values(const std::vector<T>& values) {
+		std::map<T, size_t> result;
 		for (const auto& it : values) {
 			if (result.contains(it))
 				result[it]++;
@@ -139,9 +139,9 @@ namespace util {
 		return result;
 	}
 
-	template<class _Type>
-	std::vector<_Type> get_combination(const std::vector<_Type>& v1, const std::vector<_Type>& v2) {
-		std::set<_Type> result;
+	template<class T>
+	std::vector<T> get_combination(const std::vector<T>& v1, const std::vector<T>& v2) {
+		std::set<T> result;
 		for (const auto& it : v1) {
 			if (!result.contains(it))
 				result.insert(it);
@@ -150,13 +150,13 @@ namespace util {
 			if (!result.contains(it))
 				result.insert(it);
 		}
-		return std::vector<_Type>(result.begin(), result.end());
+		return std::vector<T>(result.begin(), result.end());
 	}
 
-	template<typename _Type>
-	bool has_same_values(const std::vector<_Type>& v1, const std::vector<_Type>& v2) {
+	template<typename T>
+	bool has_same_values(const std::vector<T>& v1, const std::vector<T>& v2) {
 		bool result = true;
-		std::map<_Type, size_t> s1 = count_values(v1), s2 = count_values(v2);
+		std::map<T, size_t> s1 = count_values(v1), s2 = count_values(v2);
 		for (const auto& it : get_combination(v1, v2))
 			if (s1[it] != s2[it]) {
 				result = false;

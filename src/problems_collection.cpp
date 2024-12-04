@@ -41,12 +41,12 @@ inline bool test_checker(const input_t& input, const output_t& output, const res
 inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {}
 */
 
-template<typename _InputType, typename _OutputType, typename _ResultType>
-bool standard_checker(const _InputType& input, const _OutputType& output, const _ResultType& result) {
+template<typename InputT, typename OutputT, typename ResultT>
+bool standard_checker(const InputT& input, const OutputT& output, const ResultT& result) {
 	return output == result;
 }
-template<typename _InputType, typename _OutputType, typename _ResultType>
-void standard_destroyer(const _InputType& input, const _OutputType& output, const _ResultType& result) {}
+template<typename InputT, typename OutputT, typename ResultT>
+void standard_destroyer(const InputT& input, const OutputT& output, const ResultT& result) {}
 
 #define STANDARD_CHECKER(PRID) standard_checker<p##PRID::input_t, p##PRID::output_t, p##PRID::result_t>
 #define STANDARD_DESTROYER(PRID) standard_destroyer<p##PRID::input_t, p##PRID::output_t, p##PRID::result_t>
