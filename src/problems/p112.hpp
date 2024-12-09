@@ -23,14 +23,14 @@ namespace p112 {
 
 			if (root) {
 				std::stack<iterator> stack;
-				stack.emplace(root, nc);
+				stack.emplace(root, nc, root->val);
 				while (!stack.empty()) {
 					if (stack.top().ptr->left && stack.top().status == nc) {
 						stack.top().status = lc;
 						stack.emplace(stack.top().ptr->left, nc, stack.top().sum + stack.top().ptr->left->val);
 					} else if (stack.top().ptr->right && stack.top().status != rc) {
 						stack.top().status = rc;
-						stack.emplace(stack.top().ptr->right, nc, stack.top().sum + stack.top().ptr->left->val);
+						stack.emplace(stack.top().ptr->right, nc, stack.top().sum + stack.top().ptr->right->val);
 					} else {
 						if (!stack.top().ptr->left && !stack.top().ptr->right && stack.top().sum == target_sum) {
 							result = true;

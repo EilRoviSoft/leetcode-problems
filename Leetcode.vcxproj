@@ -28,7 +28,6 @@
     <ClCompile Include="src\problems\p104.hpp" />
     <ClCompile Include="src\problems\p110.hpp" />
     <ClCompile Include="src\problems\p111.hpp" />
-    <ClCompile Include="src\problems\p112.hpp" />
     <ClCompile Include="src\problems\p20.hpp" />
     <ClCompile Include="src\problems\p26.hpp" />
     <ClCompile Include="src\problems\p27.hpp" />
@@ -77,6 +76,7 @@
   <ItemGroup>
     <ClInclude Include="src\lib.hpp" />
     <ClInclude Include="src\problems.hpp" />
+    <ClInclude Include="src\problems\p112.hpp" />
     <ClInclude Include="src\problems\p14.hpp" />
     <ClInclude Include="src\problems\p21.hpp" />
     <ClInclude Include="src\util.hpp" />

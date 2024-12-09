@@ -8,7 +8,7 @@
 #include "problems/p9.hpp"
 #include "problems/p14.hpp"
 #include "problems/p20.hpp"
-//#include "problems/p21.hpp"
+#include "problems/p21.hpp"
 #include "problems/p26.hpp"
 #include "problems/p27.hpp"
 #include "problems/p28.hpp"
@@ -66,12 +66,12 @@ void standard_destroyer(const InputT& input, const OutputT& output, const Result
 #define ADD_CUSTOM_ME(PRID, CLASS_NAME) ADD_CUSTOM_TESTER(PRID, CLASS_NAME, p##PRID::test_maker, p##PRID::test_executor, STANDARD_CHECKER(PRID), STANDARD_DESTROYER(PRID))
 #define ADD_SOLUTION_ME(PRID) ADD_CUSTOM_ME(PRID, Solution)
 
- void init_solutions() {
+void init_solutions() {
 	ADD_SOLUTION_ME(1);
 	ADD_SOLUTION_ME(9);
 	ADD_SOLUTION_ME(14);
 	ADD_SOLUTION_ME(20);
-	//ADD_SOLUTION_MECD(21);
+	ADD_SOLUTION_MECD(21);
 	ADD_SOLUTION_MEC(26);
 	ADD_SOLUTION_MEC(27);
 	ADD_SOLUTION_ME(28);

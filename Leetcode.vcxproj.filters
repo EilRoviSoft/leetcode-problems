@@ -78,9 +78,6 @@
     <ClCompile Include="src\problems\p111.hpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\problems\p112.hpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\lib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\problems\p21.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\problems\p112.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
