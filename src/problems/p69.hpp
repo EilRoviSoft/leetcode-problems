@@ -1,7 +1,7 @@
 #pragma once
 
 //std
-#include <istream>
+#include <iostream>
 
 //lib
 #include "util.hpp"

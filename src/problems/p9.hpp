@@ -2,11 +2,12 @@
 
 //std
 #include <cstdint>
+#include <iostream>
 
 //lib
 #include "util.hpp"
 
-namespace p9 {
+ namespace p9 {
 	class Solution {
 	public:
 		bool isPalindrome(int x) const {
@@ -17,7 +18,7 @@ namespace p9 {
 			} else if (x < 10) {
 				result = true;
 			} else {
-				size_t cpy = x, i0 = 1, i1 = 1, m1 = 1;
+				int cpy = x, i0 = 1, i1 = 1, m1 = 1;
 				while (cpy >= 10) {
 					cpy /= 10;
 					++i1;

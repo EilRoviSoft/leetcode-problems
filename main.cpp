@@ -1,12 +1,14 @@
 ﻿//std
 #include <algorithm>
+#include <chrono>
+#include <functional>
 #include <iostream>
+#include <ranges>
+#include <unordered_map>
 
-//lib files
+//leetcode files
+#include "problems.hpp"
 #include "util.hpp"
-
-//problems
-#include "problems_collection.hpp"
 
 std::unordered_map<size_t, std::function<ms_duration_t()>> solutions;
 
@@ -30,5 +32,6 @@ int main() {
 	} else if (auto id = std::stoull(command); solutions.contains(id)) {
 		auto duration = solutions[id]();
 		std::cout << "problem: " << id << "\tis done in " << duration.count() << "\tms\n";
-	}
+	} else
+		std::cout << "this problem deosn't exist\n";
 }

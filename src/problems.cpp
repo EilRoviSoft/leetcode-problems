@@ -1,31 +1,32 @@
-#include "problems_collection.hpp"
+#include "problems.hpp"
 
 //lib
 #include "util.hpp"
 
 //src
-#include "p1.hpp"
-#include "p9.hpp"
-#include "p14.hpp"
-#include "p20.hpp"
-#include "p21.hpp"
-#include "p26.hpp"
-#include "p27.hpp"
-#include "p28.hpp"
-#include "p35.hpp"
-#include "p58.hpp"
-#include "p66.hpp"
-#include "p67.hpp"
-#include "p69.hpp"
-#include "p70.hpp"
-#include "p83.hpp"
-#include "p88.hpp"
-#include "p94.hpp"
-#include "p100.hpp"
-#include "p101.hpp"
-#include "p104.hpp"
-#include "p111.hpp"
-#include "p112.hpp"
+#include "problems/p1.hpp"
+#include "problems/p9.hpp"
+#include "problems/p14.hpp"
+#include "problems/p20.hpp"
+//#include "problems/p21.hpp"
+#include "problems/p26.hpp"
+#include "problems/p27.hpp"
+#include "problems/p28.hpp"
+#include "problems/p35.hpp"
+#include "problems/p58.hpp"
+#include "problems/p66.hpp"
+#include "problems/p67.hpp"
+#include "problems/p69.hpp"
+#include "problems/p70.hpp"
+#include "problems/p83.hpp"
+#include "problems/p88.hpp"
+#include "problems/p94.hpp"
+#include "problems/p100.hpp"
+#include "problems/p101.hpp"
+#include "problems/p104.hpp"
+//#include "problems/p110.hpp"
+#include "problems/p111.hpp"
+#include "problems/p112.hpp"
 
 /*
 //lib
@@ -65,12 +66,12 @@ void standard_destroyer(const InputT& input, const OutputT& output, const Result
 #define ADD_CUSTOM_ME(PRID, CLASS_NAME) ADD_CUSTOM_TESTER(PRID, CLASS_NAME, p##PRID::test_maker, p##PRID::test_executor, STANDARD_CHECKER(PRID), STANDARD_DESTROYER(PRID))
 #define ADD_SOLUTION_ME(PRID) ADD_CUSTOM_ME(PRID, Solution)
 
-void init_solutions() {
+ void init_solutions() {
 	ADD_SOLUTION_ME(1);
 	ADD_SOLUTION_ME(9);
 	ADD_SOLUTION_ME(14);
 	ADD_SOLUTION_ME(20);
-	ADD_SOLUTION_MECD(21);
+	//ADD_SOLUTION_MECD(21);
 	ADD_SOLUTION_MEC(26);
 	ADD_SOLUTION_MEC(27);
 	ADD_SOLUTION_ME(28);
@@ -86,6 +87,7 @@ void init_solutions() {
 	ADD_SOLUTION_MED(100);
 	ADD_SOLUTION_MED(101);
 	ADD_SOLUTION_MED(104);
+	//ADD_SOLUTION_MED(110);
 	ADD_SOLUTION_MED(111);
 	ADD_SOLUTION_MED(112);
 }

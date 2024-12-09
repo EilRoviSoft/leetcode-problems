@@ -1,9 +1,10 @@
 #pragma once
 
 //std
+#include <iostream>
 #include <queue>
 
-//src
+//lib
 #include "lib.hpp"
 #include "util.hpp"
 
@@ -20,18 +21,18 @@ namespace p111 {
 			int result = 0;
 
 			if (root) {
-				bool is_done = false;
 				std::queue<TreeNode*> queue;
+				int height = 0;
 
 				queue.push(root);
-				while (!queue.empty() && !is_done) {
+				while (!queue.empty() && !result) {
 					size_t size = queue.size();
-					result++;
+					height++;
 					for (size_t i = 0; i < size; i++) {
 						TreeNode* curr = queue.front();
 						queue.pop();
 						if (!curr->left && !curr->right) {
-							is_done = true;
+							result = height;
 							break;
 						}
 						if (curr->left)
@@ -51,14 +52,14 @@ namespace p111 {
 	using result_t = output_t;
 
 	inline void test_maker(std::istream& is, util::tests_t<input_t, result_t>& tests) {
-		auto input = make_tree(util::read_vector<int>(is));
+		auto input = create_tree(util::read_vector<int>(is));
 		auto result = util::read_value<int>(is);
 		tests.emplace_back(input, result);
 	}
 	inline output_t test_executor(const Solution& s, const input_t& input) {
 		return s.minDepth(input);
 	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
+	inline void data_destroyer(input_t& input, output_t& output, result_t& result) {
 		delete_tree(input);
 	}
 }

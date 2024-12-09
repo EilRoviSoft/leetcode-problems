@@ -1,10 +1,11 @@
 #pragma once
 
+//std
+#include <iostream>
+#include <vector>
+
 //lib
 #include "util.hpp"
-
-//std
-#include <vector>
 
 namespace p35 {
 	class Solution {

@@ -1,5 +1,8 @@
 #pragma once
 
+//std
+#include <iostream>
+
 //lib
 #include "lib.hpp"
 #include "util.hpp"
@@ -36,8 +39,8 @@ namespace p83 {
 	using result_t = output_t;
 
 	inline void test_maker(std::istream& is, util::tests_t<input_t, result_t>& tests) {
-		auto input = create_list_node(util::read_vector<int>(is));
-		auto result = create_list_node(util::read_vector<int>(is));
+		auto input = create_list(util::read_vector<int>(is));
+		auto result = create_list(util::read_vector<int>(is));
 		tests.emplace_back(input, result);
 	}
 	inline output_t test_executor(const Solution& s, const input_t& input) {
@@ -50,9 +53,9 @@ namespace p83 {
 				ret = false;
 		return ret;
 	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
-		delete_list_node(input);
-		delete_list_node(output);
-		delete_list_node(result);
+	inline void data_destroyer(input_t& input, output_t& output, result_t& result) {
+		delete_list(input);
+		delete_list(output);
+		delete_list(result);
 	}
 }

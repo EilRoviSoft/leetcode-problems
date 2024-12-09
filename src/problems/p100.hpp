@@ -1,9 +1,10 @@
 #pragma once
 
 //std
+#include <iostream>
 #include <stack>
 
-//src
+//lib
 #include "lib.hpp"
 #include "util.hpp"
 
@@ -54,8 +55,8 @@ namespace p100 {
 	using result_t = output_t;
 
 	inline void test_maker(std::istream& is, util::tests_t<input_t, result_t>& tests) {
-		auto n1 = make_tree(util::read_vector<int>(is));
-		auto n2 = make_tree(util::read_vector<int>(is));
+		auto n1 = create_tree(util::read_vector<int>(is));
+		auto n2 = create_tree(util::read_vector<int>(is));
 		auto result = util::read_value<bool>(is);
 		tests.emplace_back(std::make_tuple(n1, n2), result);
 	}
@@ -63,7 +64,7 @@ namespace p100 {
 		const auto& [n1, n2] = input;
 		return s.isSameTree(n1, n2);
 	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
+	inline void data_destroyer(input_t& input, output_t& output, result_t& result) {
 		const auto& [n1, n2] = input;
 		delete_tree(n1);
 		delete_tree(n2);

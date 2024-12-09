@@ -4,11 +4,11 @@
 #include <queue>
 #include <stack>
 
-bool is_in_range(int val, int lower_bound, int upper_bound) {
+bool is_in_range(int val, int lower_bound, int upper_bound)  {
 	return val >= lower_bound && val <= upper_bound;
 }
 
-TreeNode* make_tree(const std::vector<int>& input) {
+TreeNode* create_tree(const std::vector<int>& input) {
 	TreeNode* root = nullptr;
 
 	if (!input.empty()) {
@@ -38,7 +38,6 @@ TreeNode* make_tree(const std::vector<int>& input) {
 
 	return root;
 }
-
 void delete_tree(TreeNode* tree) {
 	TreeNode* curr = tree;
 	std::stack<TreeNode*> parents_stack;
@@ -63,7 +62,7 @@ void delete_tree(TreeNode* tree) {
 	}
 }
 
-ListNode* create_list_node(const std::vector<int>& input) {
+ListNode* create_list(const std::vector<int>& input) {
 	ListNode* result = nullptr;
 
 	if (!input.empty()) {
@@ -81,11 +80,12 @@ ListNode* create_list_node(const std::vector<int>& input) {
 
 	return result;
 }
-
-void delete_list_node(const ListNode* list) {
+void delete_list(ListNode* list) {
 	for (auto it = list; it != nullptr;) {
 		auto prev = it;
 		it = it->next;
 		delete prev;
 	}
 }
+
+

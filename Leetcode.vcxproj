@@ -19,37 +19,41 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\lib.hpp" />
-    <ClInclude Include="lib\util.hpp" />
-    <ClInclude Include="src\p1.hpp" />
-    <ClInclude Include="src\p100.hpp" />
-    <ClInclude Include="src\p101.hpp" />
-    <ClInclude Include="src\p104.hpp" />
-    <ClInclude Include="src\p111.hpp" />
-    <ClInclude Include="src\p112.hpp" />
-    <ClInclude Include="src\p20.hpp" />
-    <ClInclude Include="src\p21.hpp" />
-    <ClInclude Include="src\p26.hpp" />
-    <ClInclude Include="src\p27.hpp" />
-    <ClInclude Include="src\p28.hpp" />
-    <ClInclude Include="src\p35.hpp" />
-    <ClInclude Include="src\p58.hpp" />
-    <ClInclude Include="src\p66.hpp" />
-    <ClInclude Include="src\p67.hpp" />
-    <ClInclude Include="src\p69.hpp" />
-    <ClInclude Include="src\p70.hpp" />
-    <ClInclude Include="src\p83.hpp" />
-    <ClInclude Include="src\p88.hpp" />
-    <ClInclude Include="src\p9.hpp" />
-    <ClInclude Include="src\p14.hpp" />
-    <ClInclude Include="src\p94.hpp" />
-    <ClInclude Include="src\problems_collection.hpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\lib.cpp" />
+    <ClCompile Include="src\problems.cpp" />
+    <ClCompile Include="src\problems\p1.hpp" />
+    <ClCompile Include="src\problems\p100.hpp" />
+    <ClCompile Include="src\problems\p101.hpp" />
+    <ClCompile Include="src\problems\p104.hpp" />
+    <ClCompile Include="src\problems\p110.hpp" />
+    <ClCompile Include="src\problems\p111.hpp" />
+    <ClCompile Include="src\problems\p112.hpp" />
+    <ClCompile Include="src\problems\p20.hpp" />
+    <ClCompile Include="src\problems\p26.hpp" />
+    <ClCompile Include="src\problems\p27.hpp" />
+    <ClCompile Include="src\problems\p28.hpp" />
+    <ClCompile Include="src\problems\p35.hpp" />
+    <ClCompile Include="src\problems\p58.hpp" />
+    <ClCompile Include="src\problems\p66.hpp" />
+    <ClCompile Include="src\problems\p67.hpp" />
+    <ClCompile Include="src\problems\p69.hpp" />
+    <ClCompile Include="src\problems\p70.hpp" />
+    <ClCompile Include="src\problems\p83.hpp" />
+    <ClCompile Include="src\problems\p88.hpp" />
+    <ClCompile Include="src\problems\p9.hpp" />
+    <ClCompile Include="src\problems\p94.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\p1.txt" />
     <Text Include="tests\p100.txt" />
     <Text Include="tests\p101.txt" />
     <Text Include="tests\p104.txt" />
+    <Text Include="tests\p110.txt" />
     <Text Include="tests\p111.txt" />
     <Text Include="tests\p112.txt" />
     <Text Include="tests\p14.txt" />
@@ -71,13 +75,11 @@
     <Text Include="tests\p94.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lib\lib.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\problems_collection.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".gitattributes" />
-    <None Include=".gitignore" />
+    <ClInclude Include="src\lib.hpp" />
+    <ClInclude Include="src\problems.hpp" />
+    <ClInclude Include="src\problems\p14.hpp" />
+    <ClInclude Include="src\problems\p21.hpp" />
+    <ClInclude Include="src\util.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -131,6 +133,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <AllProjectBMIsArePublic>false</AllProjectBMIsArePublic>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -166,7 +171,10 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\programming\cpp\Leetcode\lib;D:\programming\cpp\Leetcode\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programming\cpp\Leetcode\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

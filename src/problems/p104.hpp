@@ -1,9 +1,10 @@
 #pragma once
 
 //std
+#include <iostream>
 #include <stack>
 
-//src
+//lib
 #include "lib.hpp"
 #include "util.hpp"
 
@@ -47,14 +48,14 @@ namespace p104 {
 	using result_t = output_t;
 
 	inline void test_maker(std::istream& is, util::tests_t<input_t, result_t>& tests) {
-		auto input = make_tree(util::read_vector<int>(is));
+		auto input = create_tree(util::read_vector<int>(is));
 		auto result = util::read_value<int>(is);
 		tests.emplace_back(input, result);
 	}
 	inline output_t test_executor(const Solution& s, const input_t& input) {
 		return s.maxDepth(input);
 	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
+	inline void data_destroyer(input_t& input, output_t& output, result_t& result) {
 		delete_tree(input);
 	}
 }

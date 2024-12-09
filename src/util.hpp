@@ -6,10 +6,8 @@
 #include <functional>
 #include <iostream>
 #include <map>
-#include <optional>
 #include <set>
-#include <string>
-#include <vector>
+#include <unordered_map>
 
 //winapi
 #include "Windows.h"
@@ -25,7 +23,7 @@ namespace util {
 
 	struct none_t {};
 
-	static const std::set whitespace = { ' ', '\t', '\n' };
+	const std::set whitespace = { ' ', '\t', '\n' };
 
 	inline void skip_until(std::istream& is, const std::function<bool(const char&)>& condition) {
 		while (condition(is.get()));
@@ -77,7 +75,7 @@ namespace util {
 					  std::function<void(std::istream& is, tests_t<InputT, ResultT>&)> test_maker,
 					  std::function<OutputT(SolutionT&, InputT&)> test_executor,
 					  std::function<bool(const InputT&, const OutputT&, const ResultT&)> test_checker,
-					  std::optional<std::function<void(InputT, OutputT, ResultT)>> output_destroyer = {}) {
+					  std::optional<std::function<void(InputT&, OutputT&, ResultT&)>> output_destroyer = {}) {
 		solutions.emplace(problem_id, [problem_id, test_maker, test_executor, test_checker, output_destroyer]() {
 			//to check memory leaks and calc execution time
 			std::chrono::duration<double, std::milli> result(0);
@@ -89,7 +87,7 @@ namespace util {
 				tests_t<InputT, ResultT> tests;
 
 				std::string filename = "tests/p" + std::to_string(problem_id) + ".txt";
-				std::fstream file(filename);
+				auto file = std::fstream(filename);
 				if (!file.is_open())
 					throw std::runtime_error("util.hpp, init_solution: test is not found\n");
 				while (!file.eof())
@@ -101,11 +99,12 @@ namespace util {
 					auto start_time = std::chrono::high_resolution_clock::now();
 					auto output = test_executor(s, tests[i].first);
 					auto end_time = std::chrono::high_resolution_clock::now();
+
 					//calc execution time
 					result += end_time - start_time;
 
 					if (!test_checker(tests[i].first, output, tests[i].second))
-						std::cerr << "Error on test: " << i + 1 << "\n";
+						std::cerr << "error on test: " << i + 1 << "\n";
 					if (output_destroyer)
 						(*output_destroyer)(tests[i].first, output, tests[i].second);
 				}

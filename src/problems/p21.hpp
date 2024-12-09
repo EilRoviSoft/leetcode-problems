@@ -1,5 +1,9 @@
 #pragma once
 
+//std
+#include <iostream>
+#include <tuple>
+
 //lib
 #include "lib.hpp"
 #include "util.hpp"
@@ -42,9 +46,9 @@ namespace p21 {
 	using result_t = output_t;
 
 	inline void test_maker(std::istream& is, util::tests_t<input_t, output_t>& tests) {
-		auto list1 = create_list_node(util::read_vector<int>(is));
-		auto list2 = create_list_node(util::read_vector<int>(is));
-		auto result = create_list_node(util::read_vector<int>(is));
+		auto list1 = create_list(util::read_vector<int>(is));
+		auto list2 = create_list(util::read_vector<int>(is));
+		auto result = create_list(util::read_vector<int>(is));
 		tests.emplace_back(std::make_tuple(list1, list2), result);
 	}
 	inline output_t test_executor(const Solution& s, input_t& input) {
@@ -58,11 +62,11 @@ namespace p21 {
 				ret = false;
 		return ret;
 	}
-	inline void data_destroyer(const input_t& input, const output_t& output, const result_t& result) {
+	inline void data_destroyer(input_t& input, output_t& output, result_t& result) {
 		auto [list1, list2] = input;
-		delete_list_node(list1);
-		delete_list_node(list2);
-		delete_list_node(output);
-		delete_list_node(result);
+		delete_list(list1);
+		delete_list(list2);
+		delete_list(output);
+		delete_list(result);
 	}
 }

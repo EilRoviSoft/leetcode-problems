@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 
+//lib
+#include "util.hpp"
+
 namespace p20 {
 	class Solution {
 	public:

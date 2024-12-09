@@ -1,6 +1,7 @@
 #pragma once
 
 //std
+#include <iostream>
 #include <string>
 
 //lib
@@ -13,7 +14,6 @@ namespace p67 {
 			std::string result;
 			size_t carry = 0, min_size, max_size, diff_size;
 			const std::string* max, * min;
-			bool new_digit_flag;
 			auto f = [](const std::string& s, size_t i) { return s[i] - '0'; };
 
 			if (a.size() > b.size()) {
